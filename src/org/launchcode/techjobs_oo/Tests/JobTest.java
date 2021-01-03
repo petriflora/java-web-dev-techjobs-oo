@@ -17,10 +17,12 @@ public class JobTest {
     Job test_job4;
 
     @Before
-    public void createJobObject1() { test_job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-    test_job2 = new Job( "", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
-    test_job3 = new Job( "Ice cream taster", new Employer(""), new Location("Home"), new PositionType("UX"), new CoreCompetency("Taste"));
-    test_job4 = new Job("Ice cream taster", new Employer(""), new Location("Home"), new PositionType("UX"), new CoreCompetency("Taste"));}
+    public void createJobObject1() {
+        test_job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        test_job2 = new Job( "", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+        test_job3 = new Job( "Ice cream taster", new Employer(""), new Location("Home"), new PositionType("UX"), new CoreCompetency("Taste"));
+        test_job4 = new Job("Ice cream taster", new Employer(""), new Location("Home"), new PositionType("UX"), new CoreCompetency("Taste"));
+    }
 
 //    @Test //add to configure runtime environment, comment out before pushing to Git
 //    public void emptyTest() {
@@ -58,8 +60,8 @@ public class JobTest {
     // on its own line. If a field is empty, the method should add, “Data not available”
     // after the label. (Bonus) If a Job object ONLY contains data for the id field, the method
     // should return, “OOPS! This job does not seem to exist.”
-    public void testToStringMethod() {
-        assertEquals(test_job2.toString(), "OOPS! This job does not seem to exist.");
+
+     public void testToStringMethod() {
         assertEquals(test_job3.toString(), ("\n" + "Job ID: " + test_job3.getId() +
                 '\n' + "Job Name: " + test_job3.getName() +
                 '\n' + "Employer: " + test_job3.getEmployer() +
@@ -67,6 +69,14 @@ public class JobTest {
                 '\n' + "Position Type: " + test_job3.getPositionType() +
                 '\n' + "Core Competency: " + test_job3.getCoreCompetency() + '\n'));
     }
+
+
+    //DONE: code a separate test for does not exist
+    @Test
+    public void testJobDoesNotExist() {
+        assertEquals(test_job2.toString(), "OOPS! This job does not seem to exist.");
+    }
+
     @Test
     public void testToStringMethodWithEmptyName() {
         assertEquals(test_job3.toString(), ("\n" + "Job ID: " + test_job3.getId() +
