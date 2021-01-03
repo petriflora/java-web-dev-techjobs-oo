@@ -7,11 +7,13 @@ public class Job {
     private int id;
     private static int nextId = 1;
 
+
     private String name;
     private Employer employer;
     private Location location;
     private PositionType positionType;
     private CoreCompetency coreCompetency;
+
 
     // DONE: Add two constructors - one to initialize a unique ID and a second to initialize the
     //  other five fields. The second constructor should also call the first in order to initialize
@@ -47,6 +49,34 @@ public class Job {
         return Objects.hash(id);
     }
 
+    @Override
+    public String toString() {
+        if (jobDetailsNotProvided()) {
+            return ("OOPS! This job does not seem to exist.");
+        } return ("\n" + "Job ID: " + this.getId() +
+                '\n' + "Job Name: " + this.getName() +
+                '\n' + "Employer: " + this.getEmployer() +
+                '\n' + "Location: " + this.getLocation() +
+                '\n' + "Position Type: " + this.getPositionType() +
+                '\n' + "Core Competency: " + this.getCoreCompetency() + '\n');
+    }
+
+    //helper function magic
+    private static String valueIsEmpty(String valueToCheck) {
+       if (valueToCheck == "") {
+            return "Data not available";
+        } return valueToCheck;
+    }
+
+    private  Boolean jobDetailsNotProvided() {
+        if (this.name == ""
+                && this.employer.getValue() == ""
+                && this.location.getValue() == ""
+                && this.positionType.getValue() == ""
+                && this.coreCompetency.getValue() == "") {
+            return true;
+        } return false;
+    }
     // DONE: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
 
@@ -55,39 +85,39 @@ public class Job {
     }
 
     public String getName() {
-        return name;
+        return valueIsEmpty(name);
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public Employer getEmployer() {
-        return employer;
+    public String getEmployer() {
+        return valueIsEmpty(employer.getValue());
     }
 
     public void setEmployer(Employer employer) {
         this.employer = employer;
     }
 
-    public Location getLocation() {
-        return location;
+    public String getLocation() {
+        return valueIsEmpty(location.getValue());
     }
 
     public void setLocation(Location location) {
         this.location = location;
     }
 
-    public PositionType getPositionType() {
-        return positionType;
+    public String getPositionType() {
+        return valueIsEmpty(positionType.getValue());
     }
 
     public void setPositionType(PositionType positionType) {
         this.positionType = positionType;
     }
 
-    public CoreCompetency getCoreCompetency() {
-        return coreCompetency;
+    public String getCoreCompetency() {
+        return valueIsEmpty(coreCompetency.getValue());
     }
 
     public void setCoreCompetency(CoreCompetency coreCompetency) {
